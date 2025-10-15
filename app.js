@@ -1,41 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import { useState } from 'react'
+import './App.css'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Users from './Users'
+import CreateUsers from './CreateUser'
+import UpdateUsers from './UpdateUser'
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+function App() {
+  const [count, setCount] = useState(0)
+    return (
+      <div>
+        <BrowserRouter>
+        <Routes>
+        <Route path='/' element={<Users />}></Route>
+        <Route path='/create' element={<CreateUsers />}></Route>
+        <Route path='/update/:id' element={<UpdateUsers />}></Route>
+        </Routes>
+        </BrowserRouter>
+      </div>
+    )
 
-var app = express();
+}
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+export default App
