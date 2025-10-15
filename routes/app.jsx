@@ -2,9 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Users from './Users'
-import CreateUsers from './CreateUser'
-import UpdateUsers from './UpdateUser'
+import Users from './users'
+import CreateUsers from './Createuser'
+import UpdateUsers from './Updateuser'
 
 function App() {
   const [count, setCount] = useState(0)
